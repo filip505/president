@@ -1,0 +1,38 @@
+{
+  "name": "csvserver",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node ./build/index.js",
+    "dev": "PORT=9001 nodemon --exec babel-node ./src/index.js",
+    "clean": "rm -rf build && mkdir build",
+    "build-server": "babel -d ./build ./src -s",
+    "build": "npm run clean && npm run build-server",
+    "test": "PORT=8000 jest --runInBand babel-node .test/"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/preset-env": "^7.5.5",
+    "jest": "^24.8.0",
+    "supertest": "^4.0.2",
+    "web-pack": "^1.0.0"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "csv-parser": "^2.3.0",
+    "csv-writer": "^1.5.0",
+    "joi": "^14.3.1",
+    "json2csv": "^4.5.2",
+    "koa": "^2.7.0",
+    "koa-body": "^4.1.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "moment": "^2.24.0"
+  }
+}
