@@ -20,5 +20,5 @@ describe('replace With Actonyms', () => {
     const res = presidentService.replaceWithAcronyms(name)
     expect(res).toBe( `${parties.democrat.acronym}, ${parties.federalist.acronym}, ${parties.republican.acronym}`)
   })
-  
+
 })

@@ -22,6 +22,10 @@ const parties = {
   nationalUnion: {
     key: 'National Union',
     acronym: 'NU'
+  },
+  none: {
+    key: 'NONE',
+    acronym: 'NONE'
   }
 }
 

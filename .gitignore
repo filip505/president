@@ -1,5 +1,5 @@
-web
 csvServer/node_modules
 csvServer/build
+csvServer/upload
 dataServer/node_modules
 dataServer/build

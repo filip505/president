@@ -2,7 +2,7 @@ import Koa from 'koa'
 import errorHandler from './middleware/error.handler'
 import csvController from './route/csv/csv.controller'
 import bodyParser from 'koa-bodyparser'
-import { PORT } from './conf'
+import { PORT } from './env'
 import Router from 'koa-router'
 
 const server = () => new Promise((resolve, reject) => {

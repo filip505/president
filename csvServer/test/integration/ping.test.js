@@ -1,6 +1,5 @@
 import server from '../../src/server'
-
-const supertest = require('supertest');
+import supertest from 'supertest'
 
 describe('ping', () => {
 

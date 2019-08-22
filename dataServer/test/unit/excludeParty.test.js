@@ -1,5 +1,6 @@
 import presidentService from '../../src/route/president/president.service'
 import parties from '../../src/helper/partysList'
+
 describe('exclude party', () => {
 
   it('test', async () => {

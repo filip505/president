@@ -1,6 +1,6 @@
 import server from '../../src/server'
-
-const supertest = require('supertest');
+import fs from 'fs'
+import supertest from 'supertest'
 
 describe('post csv', () => {
 
@@ -9,7 +9,7 @@ describe('post csv', () => {
     app = await server()
   })
 
-  it('ping request', async () => {
+  it('valid request', async () => {
     const requestDto = {
       "18": [
         {
@@ -41,18 +41,24 @@ describe('post csv', () => {
         }
       ]
     }
-    const response = await supertest(app)
+    let response = await supertest(app)
       .post('/csv')
       .send(requestDto)
       .expect(201)
 
+    response = await supertest(app)
+      .get(`/csv/${response.res.text}`)
+      .send(requestDto)
+      .expect(200)
+
     const split = response.res.text.split('\n')
-    expect(split.length).toBe(5)
-    expect(split[0]).toBe('"Name","Party","Presidential term","Presidential number"')
-    expect(split[1]).toBe('"egroeG Washington",,"08-21-1789",1')
-    expect(split[2]).toBe('"nhoJ Adams",,"08-21-1797",2')
-    expect(split[3]).toBe('"dralliM Fillmore",,"08-21-1850",13')
-    expect(split[4]).toBe('"drofrehtuR Hayes","RP","08-21-1877",19')
+
+    expect(split.length).toBe(6)
+    expect(split[0]).toBe('"Name","Party","Presidential term","President number","Ingestion Time"')
+    expect(split[1].includes('"egroeG Washington",,"08-21-1789","1"')).toBeTruthy()
+    expect(split[2].includes('"nhoJ Adams",,"08-21-1797","2"')).toBeTruthy()
+    expect(split[3].includes('"dralliM Fillmore",,"08-21-1850","13"')).toBeTruthy()
+    expect(split[4].includes('"drofrehtuR Hayes","RP","08-21-1877","19"')).toBeTruthy()
   })
 
   afterAll((done) => {

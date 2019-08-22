@@ -17,6 +17,7 @@ class PresedentService {
     data = data.filter(filterByField('pp', parties.federalist.key))
 
     data = this.iterateAndDevideByCentury(data, (presedent) => {
+      // by sending callback we are able to change all the values in one iteration 
       presedent.nm = this.reverseFirstNames(presedent.nm)
       presedent.pp = this.acronyms[presedent.pp]
       presedent.tm = moment(`${presedent.tm.slice(0, 4)}-01-01`).format('MM-DD-YYYY')
@@ -27,6 +28,10 @@ class PresedentService {
       data[key].sort(sortAlphabetically('nm'))
     }
     return await csvService.generateCsv(data)
+  }
+
+  async getData(filename){
+    return await csvService.fetchCsv(filename)
   }
 
   iterateAndDevideByCentury(data, callback) {
