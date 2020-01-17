@@ -29,8 +29,6 @@ Content-Type: application/json
 ```
 sending uuid token as param http://localhost/president/uuid in get request request will trigger downloading .csv file
 
-sequence diagram: [link](https://bit.ly/2u1tztI)
-
 # Task Requirements
 
 1. Creating two backend services (dataServer and csvServer) 
@@ -45,6 +43,8 @@ sequence diagram: [link](https://bit.ly/2u1tztI)
 4. csvServer:
    - generate csv file with adding "Ingestion Time" filed
 5. discuss possible solutions for improvements  
+
+sequence diagram: ![](sequence_diagram.png)
 
 # CsvServer
 
