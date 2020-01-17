@@ -89,10 +89,6 @@ To generate csv file i first look into json2csv dependency. This dependency can 
 ### improvements:
 
 - theoretically user could upload very big json file, what will efect time to parse data and can cause 408 request timeout. To prevent this from happening we could decrease request Size Limit or extend request time.
-In the case we want to enable big json files to be uploaded and parsed, we should take different approach by creating post request that will also take user email as param. In that case we could create a queue, and make sure we run few tasks at the time. After the csv file is parsed we would send user email with link to file.
+In the case we want to enable big json files to be uploaded and parsed, we should take different approach by creating post request that will also take user email as a param. In that case we could use AWS SNS message que, when dataServer is done with parsing data it will send message to AWS SNS, CSVServer will be automaticaly be triggered to pull that message and it willl generate scv file. Once when the csv is generater CSVServer server can upload file to s3 bucket. From there we could create Lambda function that would send email with link to a file to the user once the file is successfully uploaded to s3 bucker.
 
-<<<<<<< HEAD
 - saving data on disk is not the most optimal solution. With this approach we are not able to scale CsvServer. Implementing data storage microservices like for amazon s3 bucket would be ideal solution. Another advantige is that we can use some nice features like expiration time.
-=======
-- saving data on disk is not the most optimal solution. With this approach we are not able to scale CsvServer. Implementing data storage microservices like for example amazon s3 bucket would be ideal solution. Another advantige is that we can use some nice features like expiration time.
->>>>>>> fixing typo in readme
